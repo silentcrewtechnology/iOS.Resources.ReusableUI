@@ -1,0 +1,33 @@
+{
+  "originHash" : "dd27ae24541f8af3f4b5d6f29bfb4ff8b3e067a53e9118e4f58b18987d39402a",
+  "pins" : [
+    {
+      "identity" : "ios-resources-colors",
+      "kind" : "remoteSourceControl",
+      "location" : "https://gitlab.akbars.tech/abo/ios-resources-colors.git",
+      "state" : {
+        "revision" : "a5575917f6db4ed88533fa8ed13ff2f36ba6a09c",
+        "version" : "0.0.3"
+      }
+    },
+    {
+      "identity" : "ios-resources-ui-components",
+      "kind" : "remoteSourceControl",
+      "location" : "https://gitlab.akbars.tech/abo/ios-resources-ui-components.git",
+      "state" : {
+        "revision" : "ee42473b85ae79ce244dca95e16f4626a1c36f88",
+        "version" : "0.0.40"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit.git",
+      "state" : {
+        "revision" : "f222cbdf325885926566172f6f5f06af95473158",
+        "version" : "5.6.0"
+      }
+    }
+  ],
+  "version" : 3
+}
