@@ -14,14 +14,12 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://gitlab.akbars.tech/abo/ios-resources-colors.git", exact: "0.0.3"),
         .package(url: "https://gitlab.akbars.tech/abo/ios-resources-ui-components.git", exact: "0.0.40"),
     ],
     targets: [
         .target(
             name: "Modules",
             dependencies: [
-                .product(name: "iOS.Resources.Colors", package: "ios-resources-colors"),
                 .product(name: "iOS.Resources.UiComponents", package: "ios-resources-ui-components"),
             ]
         ),
