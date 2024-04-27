@@ -1,0 +1,24 @@
+{
+  "originHash" : "800c9e0700a1b124cb6ae550da732ba724a2035556d9330adabe0ddc19ef682f",
+  "pins" : [
+    {
+      "identity" : "ios-resources-ui-components",
+      "kind" : "remoteSourceControl",
+      "location" : "https://gitlab.akbars.tech/abo/ios-resources-ui-components.git",
+      "state" : {
+        "revision" : "ee42473b85ae79ce244dca95e16f4626a1c36f88",
+        "version" : "0.0.40"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit.git",
+      "state" : {
+        "revision" : "f222cbdf325885926566172f6f5f06af95473158",
+        "version" : "5.6.0"
+      }
+    }
+  ],
+  "version" : 3
+}
