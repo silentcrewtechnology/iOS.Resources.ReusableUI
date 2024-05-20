@@ -14,7 +14,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://gitlab.akbars.tech/abo/ios-resources-ui-components.git", exact: "0.0.40"),
+        .package(url: "https://gitlab.akbars.tech/abo/ios-resources-ui-components.git", .upToNextMinor(from: "0.0.46")),
     ],
     targets: [
         .target(
