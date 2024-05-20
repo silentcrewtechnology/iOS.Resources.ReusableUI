@@ -1,13 +1,13 @@
 {
-  "originHash" : "800c9e0700a1b124cb6ae550da732ba724a2035556d9330adabe0ddc19ef682f",
+  "originHash" : "4bf1bdfb63c75a5132d183aa6f40173ac3012b8e543830cf60237f82fc943405",
   "pins" : [
     {
       "identity" : "ios-resources-ui-components",
       "kind" : "remoteSourceControl",
       "location" : "https://gitlab.akbars.tech/abo/ios-resources-ui-components.git",
       "state" : {
-        "revision" : "ee42473b85ae79ce244dca95e16f4626a1c36f88",
-        "version" : "0.0.40"
+        "revision" : "2fbd4c3e36afeb048a56e4d10b2e46eda143b631",
+        "version" : "0.0.46"
       }
     },
     {
