@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "iOS.Resources.ReusableUI",
+    platforms: [
+        .iOS(.v15),
+    ],
     products: [
         .library(
             name: "iOS.Resources.ReusableUI",
@@ -14,13 +17,13 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://gitlab.akbars.tech/abo/ios-resources-ui-components.git", .upToNextMinor(from: "0.0.46")),
+        .package(url: "https://gitlab.akbars.tech/abo/ios.designsystem", .upToNextMinor(from: "0.3.0")),
     ],
     targets: [
         .target(
             name: "Modules",
             dependencies: [
-                .product(name: "iOS.Resources.UiComponents", package: "ios-resources-ui-components"),
+                .product(name: "DesignSystem", package: "ios.designsystem"),
             ]
         ),
     ]
