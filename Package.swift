@@ -17,13 +17,15 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://gitlab.akbars.tech/abo/ios.designsystem", .upToNextMinor(from: "0.3.0")),
+        .package(url: "https://gitlab.akbars.tech/abo/ios.designsystem", .upToNextMinor(from: "3.3.0")),
+        .package(url: "https://gitlab.akbars.tech/abo/ios.architecture", .upToNextMinor(from: "0.0.6")),
     ],
     targets: [
         .target(
             name: "Modules",
             dependencies: [
                 .product(name: "DesignSystem", package: "ios.designsystem"),
+                .product(name: "Architecture", package: "ios.architecture"),
             ]
         ),
     ]
