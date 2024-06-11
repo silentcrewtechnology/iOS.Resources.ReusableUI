@@ -9,10 +9,6 @@ import UIKit
 import SnapKit
 import Colors
 
-public protocol StocksFilterCellDelegate: AnyObject {
-    func didSelectFilter(model: StocksListFilterModel)
-}
-
 public final class StocksFilterCell: UITableViewCell {
     
     // MARK: - Properties
@@ -20,22 +16,16 @@ public final class StocksFilterCell: UITableViewCell {
     public struct ViewProperties {
         public let collectionItems: [StocksListFilterModel]
         public let selectedItem: StocksListFilterModel
-        public let firstButtonTitle: String?
-        public let secondButtonTitle: String?
-        public let thirdButtonTitle: String?
+        public let onFilter: ((StocksListFilterModel) -> Void)?
         
         public init(
-            collectionItems: [StocksListFilterModel],
-            selectedItem: StocksListFilterModel,
-            firstButtonTitle: String?,
-            secondButtonTitle: String?,
-            thirdButtonTitle: String?
+            collectionItems: [StocksListFilterModel] = [],
+            selectedItem: StocksListFilterModel = .ru,
+            onFilter: ((StocksListFilterModel) -> Void)? = nil
         ) {
             self.collectionItems = collectionItems
             self.selectedItem = selectedItem
-            self.firstButtonTitle = firstButtonTitle
-            self.secondButtonTitle = secondButtonTitle
-            self.thirdButtonTitle = thirdButtonTitle
+            self.onFilter = onFilter
         }
     }
     
@@ -43,7 +33,7 @@ public final class StocksFilterCell: UITableViewCell {
     
     private var collectionItems: [StocksListFilterModel] = []
     private var selectedItem: StocksListFilterModel?
-    public weak var delegate: StocksFilterCellDelegate?
+    private var viewProperties: ViewProperties = .init()
     
     private lazy var firstButton: StocksFilterSelectableButton = {
         let button = StocksFilterSelectableButton()
@@ -84,6 +74,7 @@ public final class StocksFilterCell: UITableViewCell {
     public func configure(with viewProperties: ViewProperties) {
         guard viewProperties.collectionItems.count == 3 else { return }
         
+        self.viewProperties = viewProperties
         collectionItems = viewProperties.collectionItems
         selectedItem = viewProperties.selectedItem
         
@@ -144,7 +135,7 @@ public final class StocksFilterCell: UITableViewCell {
 
         if !firstButton.isSelected {
             firstButton.isSelected.toggle()
-            delegate?.didSelectFilter(model: collectionItems[0])
+            viewProperties.onFilter? (collectionItems[0])
         }
     }
     
@@ -154,7 +145,7 @@ public final class StocksFilterCell: UITableViewCell {
 
         if !secondButton.isSelected {
             secondButton.isSelected.toggle()
-            delegate?.didSelectFilter(model: collectionItems[1])
+            viewProperties.onFilter? (collectionItems[1])
         }
     }
     
@@ -164,7 +155,7 @@ public final class StocksFilterCell: UITableViewCell {
 
         if !thirdButton.isSelected {
             thirdButton.isSelected.toggle()
-            delegate?.didSelectFilter(model: collectionItems[2])
+            viewProperties.onFilter? (collectionItems[2])
         }
     }
 }
