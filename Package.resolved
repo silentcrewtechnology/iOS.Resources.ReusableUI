@@ -1,5 +1,5 @@
 {
-  "originHash" : "7caf3fc2c3b4e91f629ce801989939adb87961d4b7da4f31101e83fae2d7e3dc",
+  "originHash" : "77787dd78d49ec41c0f84ef24b3ca2f0dce76d8c16e999a67acbfb9fae8f4ce6",
   "pins" : [
     {
       "identity" : "ios-resources-colors",
@@ -53,6 +53,15 @@
       "state" : {
         "revision" : "9564e9ce7dea175507ec60b79a174a757ad3d40b",
         "version" : "3.3.0"
+      }
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "revision" : "5b92f029fab2cce44386d28588098b5be0824ef5",
+        "version" : "7.11.0"
       }
     },
     {
