@@ -4,15 +4,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "iOS.Resources.ReusableUI",
+    name: "ReusableUI",
     platforms: [
         .iOS(.v15),
     ],
     products: [
         .library(
-            name: "iOS.Resources.ReusableUI",
+            name: "ReusableUI",
             targets: [
-                "Modules"
+                "ReusableUI"
             ]
         ),
     ],
@@ -23,7 +23,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Modules",
+            name: "ReusableUI",
             dependencies: [
                 .product(name: "DesignSystem", package: "ios.designsystem"),
                 .product(name: "Architecture", package: "ios.architecture"),

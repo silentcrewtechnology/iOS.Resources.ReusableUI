@@ -7,8 +7,12 @@
 
 import Foundation
 
-public struct CurrencyModel: Decodable {
-    var name: String?
+public struct CurrencyModel: Codable, Equatable {
+    public var name: String?
+    
+    public init(name: String? = nil) {
+        self.name = name
+    }
     
     enum CodingKeys: String, CodingKey {
         case name = "Name"
