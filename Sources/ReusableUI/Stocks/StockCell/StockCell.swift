@@ -14,7 +14,11 @@ import DesignSystem
 public final class StockCell: UITableViewCell {
     
     public struct ViewProperties {
-        let stockModel: StockModel
+        public let stockModel: StockModel
+        
+        public init(stockModel: StockModel) {
+            self.stockModel = stockModel
+        }
     }
     
     // MARK: - Private properties

@@ -12,7 +12,11 @@ import Colors
 public final class StockUpdateDateCell: UITableViewCell {
     
     public struct ViewProperties {
-        let text: String?
+        public let text: String?
+        
+        public init(text: String?) {
+            self.text = text
+        }
     }
     
     // MARK: - Private properties

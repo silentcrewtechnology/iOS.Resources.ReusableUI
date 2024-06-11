@@ -18,11 +18,25 @@ public final class StocksFilterCell: UITableViewCell {
     // MARK: - Properties
     
     public struct ViewProperties {
-        let collectionItems: [StocksListFilterModel]
-        let selectedItem: StocksListFilterModel
-        let firstButtonTitle: String?
-        let secondButtonTitle: String?
-        let thirdButtonTitle: String?
+        public let collectionItems: [StocksListFilterModel]
+        public let selectedItem: StocksListFilterModel
+        public let firstButtonTitle: String?
+        public let secondButtonTitle: String?
+        public let thirdButtonTitle: String?
+        
+        public init(
+            collectionItems: [StocksListFilterModel],
+            selectedItem: StocksListFilterModel,
+            firstButtonTitle: String?,
+            secondButtonTitle: String?,
+            thirdButtonTitle: String?
+        ) {
+            self.collectionItems = collectionItems
+            self.selectedItem = selectedItem
+            self.firstButtonTitle = firstButtonTitle
+            self.secondButtonTitle = secondButtonTitle
+            self.thirdButtonTitle = thirdButtonTitle
+        }
     }
     
     // MARK: - Private properties
