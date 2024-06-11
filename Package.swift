@@ -4,28 +4,30 @@
 import PackageDescription
 
 let package = Package(
-    name: "iOS.Resources.ReusableUI",
+    name: "ReusableUI",
     platforms: [
         .iOS(.v15),
     ],
     products: [
         .library(
-            name: "iOS.Resources.ReusableUI",
+            name: "ReusableUI",
             targets: [
-                "Modules"
+                "ReusableUI"
             ]
         ),
     ],
     dependencies: [
         .package(url: "https://gitlab.akbars.tech/abo/ios.designsystem", .upToNextMinor(from: "3.3.0")),
         .package(url: "https://gitlab.akbars.tech/abo/ios.architecture", .upToNextMinor(from: "0.0.6")),
+        .package(url: "https://github.com/onevcat/Kingfisher", exact: "7.11.0"),
     ],
     targets: [
         .target(
-            name: "Modules",
+            name: "ReusableUI",
             dependencies: [
                 .product(name: "DesignSystem", package: "ios.designsystem"),
                 .product(name: "Architecture", package: "ios.architecture"),
+                .product(name: "Kingfisher", package: "Kingfisher")
             ]
         ),
     ]
