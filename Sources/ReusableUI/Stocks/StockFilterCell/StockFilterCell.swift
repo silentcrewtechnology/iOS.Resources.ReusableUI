@@ -16,16 +16,19 @@ public final class StocksFilterCell: UITableViewCell {
     public struct ViewProperties {
         public let collectionItems: [StocksListFilterModel]
         public let selectedItem: StocksListFilterModel
+        public let accessibilityIdentifier: String?
         public let onFilter: ((StocksListFilterModel) -> Void)?
         
         public init(
             collectionItems: [StocksListFilterModel] = [],
             selectedItem: StocksListFilterModel = .ru,
+            accessibilityIdentifier: String? = nil,
             onFilter: ((StocksListFilterModel) -> Void)? = nil
         ) {
             self.collectionItems = collectionItems
             self.selectedItem = selectedItem
             self.onFilter = onFilter
+            self.accessibilityIdentifier = accessibilityIdentifier
         }
     }
     
@@ -62,11 +65,14 @@ public final class StocksFilterCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         commonInit()
+        setupAccessibility()
     }
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
         commonInit()
+        setupAccessibility()
     }
     
     // MARK: - Methods
@@ -77,6 +83,7 @@ public final class StocksFilterCell: UITableViewCell {
         self.viewProperties = viewProperties
         collectionItems = viewProperties.collectionItems
         selectedItem = viewProperties.selectedItem
+        accessibilityIdentifier = viewProperties.accessibilityIdentifier
         
         firstButton.setTitle(collectionItems[0].title, for: .normal)
         secondButton.setTitle(collectionItems[1].title, for: .normal)
@@ -103,6 +110,12 @@ public final class StocksFilterCell: UITableViewCell {
         selectionStyle = .none
         addSubview()
         makeConstraints()
+    }
+    
+    private func setupAccessibility() {
+        firstButton.accessibilityIdentifier = "FirstButton"
+        secondButton.accessibilityIdentifier = "SecondButton"
+        thirdButton.accessibilityIdentifier = "ThirdButton"
     }
     
     private func addSubview() {

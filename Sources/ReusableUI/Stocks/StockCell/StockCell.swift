@@ -15,9 +15,14 @@ public final class StockCell: UITableViewCell {
     
     public struct ViewProperties {
         public let stockModel: StockModel
+        public let accessibilityIdentifier: String?
         
-        public init(stockModel: StockModel) {
+        public init(
+            stockModel: StockModel,
+            accessibilityIdentifier: String? = nil
+        ) {
             self.stockModel = stockModel
+            self.accessibilityIdentifier = accessibilityIdentifier
         }
     }
     
@@ -74,6 +79,7 @@ public final class StockCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         commonInit()
+        setupAccessibility()
     }
     
     public required init?(coder: NSCoder) {
@@ -96,6 +102,7 @@ public final class StockCell: UITableViewCell {
         // TODO: - Перейти Currency
         nameLabel.attributedText = properties.stockModel.name?.textL(color: .contentPrimary)
         classcodeLabel.attributedText = properties.stockModel.securcode?.textM(color: .contentSecondary)
+        accessibilityIdentifier = properties.accessibilityIdentifier
         
         if let priceDynamics = properties.stockModel.priceDynamics,
            let priceDynamicsInPercent = properties.stockModel.priceDynamicsInPercent {
@@ -150,5 +157,13 @@ public final class StockCell: UITableViewCell {
             make.top.equalTo(priceLabel.snp.bottom).offset(4)
             make.trailing.equalToSuperview().inset(16)
         }
+    }
+    
+    private func setupAccessibility() {
+        logoImage.accessibilityIdentifier = "LogoImage"
+        nameLabel.accessibilityIdentifier = "NameLabel"
+        classcodeLabel.accessibilityIdentifier = "ClasscodeLabel"
+        priceLabel.accessibilityIdentifier = "PriceLabel"
+        priceDynamicsLabel.accessibilityIdentifier = "PriceDynamicsLabel"
     }
 }
