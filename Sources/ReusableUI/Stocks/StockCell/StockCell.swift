@@ -102,7 +102,7 @@ public final class StockCell: UITableViewCell {
             let textColor: UIColor = priceDynamicsInPercent >= 0 ? .contentAction : .contentError
             if let formattedPriceDynamicsInPercent = formatPercent(priceDynamicsInPercent) {
                 priceDynamicsLabel.attributedText =
-                "\(formatPrice(priceDynamics, 0)) ₽ \(formattedPriceDynamicsInPercent)".textL(color: textColor)
+                "\(formatPrice(priceDynamics, 0)) ₽ (\(formattedPriceDynamicsInPercent))".textL(color: textColor)
             }
         }
         
