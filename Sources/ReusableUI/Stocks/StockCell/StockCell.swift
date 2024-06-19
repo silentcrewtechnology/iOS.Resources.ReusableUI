@@ -100,12 +100,15 @@ public final class StockCell: UITableViewCell {
         if let priceDynamics = properties.stockModel.priceDynamics,
            let priceDynamicsInPercent = properties.stockModel.priceDynamicsInPercent {
             let textColor: UIColor = priceDynamicsInPercent >= 0 ? .contentAction : .contentError
-            priceDynamicsLabel.attributedText =
-            "\(String(describing: priceDynamics)) ₽ (\(String(describing: priceDynamicsInPercent))%)".textL(color: textColor)
+            if let formattedPriceDynamicsInPercent = formatPercent(priceDynamicsInPercent) {
+                priceDynamicsLabel.attributedText =
+                "\(formatPrice(priceDynamics, 0)) ₽ \(formattedPriceDynamicsInPercent)".textL(color: textColor)
+            }
         }
         
         if let price = properties.stockModel.price {
-            priceLabel.attributedText = "\(String(describing: price))₽".textL_1(color: .contentPrimary)
+            let formattedPrice = formatPrice(price)
+            priceLabel.attributedText = "\(String(describing: formattedPrice)) ₽".textL_1(color: .contentPrimary)
         }
         
         guard let stringUrl = properties.stockModel.imageUrl,
@@ -150,5 +153,29 @@ public final class StockCell: UITableViewCell {
             make.top.equalTo(priceLabel.snp.bottom).offset(4)
             make.trailing.equalToSuperview().inset(16)
         }
+    }
+    
+    private func formatPrice(_ price: Decimal,
+                             _ minimumFractionDigits: Int = 2) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = minimumFractionDigits
+        formatter.maximumFractionDigits = 2
+        return formatter.string(for: price) ?? "\(price)"
+    }
+    
+    private func formatPercent(_ percent: Decimal) -> String? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        formatter.decimalSeparator = ","
+        formatter.multiplier = 1
+        
+        guard let formattedString = formatter.string(for: percent) else {
+            return nil
+        }
+        
+        return formattedString.replacingOccurrences(of: " %", with: "%")
     }
 }
