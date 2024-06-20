@@ -1,5 +1,5 @@
 {
-  "originHash" : "2c9c1f30a46e03fed2a910366aa80beda943293ce21716ccb4bc3b3f76d43846",
+  "originHash" : "12bfb47cdc65766da9be06cba89e5998192a7babffb08298b425fb0aee693031",
   "pins" : [
     {
       "identity" : "ios-resources-colors",
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://gitlab.akbars.tech/abo/ios.architecture",
       "state" : {
-        "revision" : "7658812fc6d295c5207c24a0d853e53606d7cde8",
-        "version" : "0.0.6"
+        "revision" : "42393a7d964b318398492610181824a55b92e0f6",
+        "version" : "1.0.0"
       }
     },
     {

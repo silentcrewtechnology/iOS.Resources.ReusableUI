@@ -12,16 +12,38 @@ import Colors
 public final class StockUpdateDateCell: UITableViewCell {
     
     public struct ViewProperties {
+        public struct AccessibilityIds {
+            public let id: String?
+            public let container: String?
+            public let infoImage: String?
+            public let infoLabel: String?
+            
+            public init(id: String?,
+                        container: String?,
+                        infoImage: String?,
+                        infoLabel: String?) {
+                self.id = id
+                self.container = container
+                self.infoImage = infoImage
+                self.infoLabel = infoLabel
+            }
+        }
+        
         public let text: String?
+        public let accessibilityIds: AccessibilityIds?
         
         public init(
-            text: String?
+            text: String? = nil,
+            accessibilityIds: AccessibilityIds? = nil
         ) {
             self.text = text
+            self.accessibilityIds = accessibilityIds
         }
     }
     
     // MARK: - Private properties
+    
+    private var viewProperties: ViewProperties = .init()
     
     private lazy var containerView = UIView()
     
@@ -45,6 +67,7 @@ public final class StockUpdateDateCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         commonInit()
+        setupAccessibilityIds()
     }
     
     public required init?(coder: NSCoder) {
@@ -61,8 +84,10 @@ public final class StockUpdateDateCell: UITableViewCell {
     // MARK: - Methods
     
     public func configure(with properties: ViewProperties) {
+        self.viewProperties = properties
         infoLabel.attributedText = properties.text?.textS(color: .contentPrimary)
         infoImageView.image = .ic24InfoCircleFilled.withTintColor(.contentSecondary)
+        setupAccessibilityIds()
     }
     
     // MARK: - Private methods
@@ -87,5 +112,12 @@ public final class StockUpdateDateCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(16)
             make.top.equalToSuperview().inset(12)
         }
+    }
+    
+    private func setupAccessibilityIds() {
+        accessibilityIdentifier = viewProperties.accessibilityIds?.id
+        containerView.accessibilityIdentifier = viewProperties.accessibilityIds?.container
+        infoImageView.accessibilityIdentifier = viewProperties.accessibilityIds?.infoImage
+        infoLabel.accessibilityIdentifier = viewProperties.accessibilityIds?.infoLabel
     }
 }
