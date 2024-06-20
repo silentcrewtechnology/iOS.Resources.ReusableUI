@@ -12,7 +12,6 @@ import Colors
 public final class StockUpdateDateCell: UITableViewCell {
     
     public struct ViewProperties {
-        
         public struct AccessibilityIds {
             public let id: String?
             public let container: String?
@@ -33,8 +32,10 @@ public final class StockUpdateDateCell: UITableViewCell {
         public let text: String?
         public let accessibilityIds: AccessibilityIds?
         
-        public init(text: String? = nil,
-                    accessibilityIds: AccessibilityIds? = nil) {
+        public init(
+            text: String? = nil,
+            accessibilityIds: AccessibilityIds? = nil
+        ) {
             self.text = text
             self.accessibilityIds = accessibilityIds
         }
