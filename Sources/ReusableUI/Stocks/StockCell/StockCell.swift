@@ -15,14 +15,39 @@ public final class StockCell: UITableViewCell {
     
     public struct ViewProperties {
         public let stockModel: StockModel
-        public let accessibilityIdentifier: String?
+        public let accessibilityIds: AccessibilityIds?
+
+        public struct AccessibilityIds {
+            public let id: String?
+            public let logoImage: String?
+            public let nameLabel: String?
+            public let classcodeLabel: String?
+            public let priceLabel: String?
+            public let priceDynamicsLabel: String?
+            
+            public init(
+                id: String?,
+                logoImage: String?,
+                nameLabel: String?,
+                classcodeLabel: String?,
+                priceLabel: String?,
+                priceDynamicsLabel: String?
+            ) {
+                self.id = id
+                self.logoImage = logoImage
+                self.nameLabel = nameLabel
+                self.classcodeLabel = classcodeLabel
+                self.priceLabel = priceLabel
+                self.priceDynamicsLabel = priceDynamicsLabel
+            }
+        }
         
         public init(
             stockModel: StockModel,
-            accessibilityIdentifier: String? = nil
+            accessibilityIds: AccessibilityIds? = nil
         ) {
             self.stockModel = stockModel
-            self.accessibilityIdentifier = accessibilityIdentifier
+            self.accessibilityIds = accessibilityIds
         }
     }
     
@@ -79,7 +104,6 @@ public final class StockCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         commonInit()
-        setupAccessibility()
     }
     
     public required init?(coder: NSCoder) {
@@ -99,10 +123,11 @@ public final class StockCell: UITableViewCell {
     // MARK: - Methods
     
     public func configure(with properties: ViewProperties) {
+        setupAccessibilityIds(with: properties)
+        
         // TODO: - Перейти Currency
         nameLabel.attributedText = properties.stockModel.name?.textL(color: .contentPrimary)
         classcodeLabel.attributedText = properties.stockModel.securcode?.textM(color: .contentSecondary)
-        accessibilityIdentifier = properties.accessibilityIdentifier
         
         if let priceDynamics = properties.stockModel.priceDynamics,
            let priceDynamicsInPercent = properties.stockModel.priceDynamicsInPercent {
@@ -159,11 +184,12 @@ public final class StockCell: UITableViewCell {
         }
     }
     
-    private func setupAccessibility() {
-        logoImage.accessibilityIdentifier = "LogoImage"
-        nameLabel.accessibilityIdentifier = "NameLabel"
-        classcodeLabel.accessibilityIdentifier = "ClasscodeLabel"
-        priceLabel.accessibilityIdentifier = "PriceLabel"
-        priceDynamicsLabel.accessibilityIdentifier = "PriceDynamicsLabel"
+    private func setupAccessibilityIds(with viewProperties: ViewProperties) {
+        accessibilityIdentifier = viewProperties.accessibilityIds?.id
+        logoImage.accessibilityIdentifier = viewProperties.accessibilityIds?.logoImage
+        nameLabel.accessibilityIdentifier = viewProperties.accessibilityIds?.nameLabel
+        classcodeLabel.accessibilityIdentifier = viewProperties.accessibilityIds?.classcodeLabel
+        priceLabel.accessibilityIdentifier = viewProperties.accessibilityIds?.priceLabel
+        priceDynamicsLabel.accessibilityIdentifier = viewProperties.accessibilityIds?.priceDynamicsLabel
     }
 }

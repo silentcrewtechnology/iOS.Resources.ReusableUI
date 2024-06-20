@@ -13,14 +13,11 @@ public final class StockUpdateDateCell: UITableViewCell {
     
     public struct ViewProperties {
         public let text: String?
-        public let accessibilityIdentifier: String?
         
         public init(
-            text: String?, 
-            accessibilityIdentifier: String? = nil
+            text: String?
         ) {
             self.text = text
-            self.accessibilityIdentifier = accessibilityIdentifier
         }
     }
     
@@ -48,7 +45,6 @@ public final class StockUpdateDateCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         commonInit()
-        setupAccessibility()
     }
     
     public required init?(coder: NSCoder) {
@@ -67,7 +63,6 @@ public final class StockUpdateDateCell: UITableViewCell {
     public func configure(with properties: ViewProperties) {
         infoLabel.attributedText = properties.text?.textS(color: .contentPrimary)
         infoImageView.image = .ic24InfoCircleFilled.withTintColor(.contentSecondary)
-        accessibilityIdentifier = properties.accessibilityIdentifier
     }
     
     // MARK: - Private methods
@@ -92,11 +87,5 @@ public final class StockUpdateDateCell: UITableViewCell {
             make.trailing.equalToSuperview().inset(16)
             make.top.equalToSuperview().inset(12)
         }
-    }
-    
-    private func setupAccessibility() {
-        containerView.accessibilityIdentifier = "ContainerView"
-        infoLabel.accessibilityIdentifier = "InfoLabel"
-        infoImageView.accessibilityIdentifier = "InfoImageView"
     }
 }
