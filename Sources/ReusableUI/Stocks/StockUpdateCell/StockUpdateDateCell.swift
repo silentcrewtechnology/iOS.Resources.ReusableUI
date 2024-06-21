@@ -93,6 +93,7 @@ public final class StockUpdateDateCell: UITableViewCell {
     // MARK: - Private methods
 
     private func commonInit() {
+        containerView.isAccessibilityElement = true
         contentView.addSubview(containerView)
         containerView.layer.cornerRadius = 8
         containerView.backgroundColor = .backgroundDisabled
