@@ -23,7 +23,8 @@ public final class StockCell: UITableViewCell {
             public let nameLabel: String?
             public let classcodeLabel: String?
             public let priceLabel: String?
-            public let priceDynamicsLabel: String?
+            public var priceDynamicsLabelGreen: String?
+            public let priceDynamicsLabelRed: String?
             
             public init(
                 id: String?,
@@ -31,14 +32,16 @@ public final class StockCell: UITableViewCell {
                 nameLabel: String?,
                 classcodeLabel: String?,
                 priceLabel: String?,
-                priceDynamicsLabel: String?
+                priceDynamicsLabelGreen: String?,
+                priceDynamicsLabelRed: String?
             ) {
                 self.id = id
                 self.logoImage = logoImage
                 self.nameLabel = nameLabel
                 self.classcodeLabel = classcodeLabel
                 self.priceLabel = priceLabel
-                self.priceDynamicsLabel = priceDynamicsLabel
+                self.priceDynamicsLabelGreen = priceDynamicsLabelGreen
+                self.priceDynamicsLabelRed = priceDynamicsLabelRed
             }
         }
         
@@ -131,7 +134,17 @@ public final class StockCell: UITableViewCell {
         
         if let priceDynamics = properties.stockModel.priceDynamics,
            let priceDynamicsInPercent = properties.stockModel.priceDynamicsInPercent {
-            let textColor: UIColor = priceDynamicsInPercent >= 0 ? .contentAction : .contentError
+            
+            var textColor: UIColor
+            
+            if priceDynamicsInPercent >= 0 {
+                textColor = .contentAction
+                priceDynamicsLabel.accessibilityIdentifier = properties.accessibilityIds?.priceDynamicsLabelGreen
+            }  else {
+                textColor = .contentError
+                priceDynamicsLabel.accessibilityIdentifier = properties.accessibilityIds?.priceDynamicsLabelRed
+            }
+            
             if let formattedPriceDynamicsInPercent = formatPercent(priceDynamicsInPercent) {
                 priceDynamicsLabel.attributedText =
                 "\(formatPrice(priceDynamics, 0)) ₽ (\(formattedPriceDynamicsInPercent))".textL(color: textColor)
@@ -193,7 +206,6 @@ public final class StockCell: UITableViewCell {
         nameLabel.accessibilityIdentifier = viewProperties.accessibilityIds?.nameLabel
         classcodeLabel.accessibilityIdentifier = viewProperties.accessibilityIds?.classcodeLabel
         priceLabel.accessibilityIdentifier = viewProperties.accessibilityIds?.priceLabel
-        priceDynamicsLabel.accessibilityIdentifier = viewProperties.accessibilityIds?.priceDynamicsLabel
     }
     
     private func formatPrice(_ price: Decimal,
