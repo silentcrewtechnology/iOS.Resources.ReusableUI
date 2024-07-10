@@ -21,20 +21,29 @@ public final class StocksFilterCell: UITableViewCell {
         
         public struct AccessibilityIds {
             public let id: String?
-            public let firstButton: String?
-            public let secondButton: String?
-            public let thirdButton: String?
-           
+            public let firstButtonSelected: String?
+            public let firstButtonUnselected: String?
+            public let secondButtonSelected: String?
+            public let secondButtonUnselected: String?
+            public let thirdButtonSelected: String?
+            public let thirdButtonUnselected: String?
+
             public init(
                 id: String?,
-                firstButton: String?,
-                secondButton: String?,
-                thirdButton: String?
+                firstButtonSelected: String?,
+                firstButtonUnselected: String?,
+                secondButtonSelected: String?,
+                secondButtonUnselected: String?,
+                thirdButtonSelected: String?,
+                thirdButtonUnselected: String?
             ) {
                 self.id = id
-                self.firstButton = firstButton
-                self.secondButton = secondButton
-                self.thirdButton = thirdButton
+                self.firstButtonSelected = firstButtonSelected
+                self.firstButtonUnselected = firstButtonUnselected
+                self.secondButtonSelected = secondButtonSelected
+                self.secondButtonUnselected = secondButtonUnselected
+                self.thirdButtonSelected = thirdButtonSelected
+                self.thirdButtonUnselected = thirdButtonUnselected
             }
         }
         
@@ -98,7 +107,7 @@ public final class StocksFilterCell: UITableViewCell {
         guard viewProperties.collectionItems.count == 3 else { return }
         
         self.viewProperties = viewProperties
-        setupAccessibilityIds()
+        accessibilityIdentifier = viewProperties.accessibilityIds?.id
         
         collectionItems = viewProperties.collectionItems
         selectedItem = viewProperties.selectedItem
@@ -120,6 +129,18 @@ public final class StocksFilterCell: UITableViewCell {
             secondButton.isSelected = false
             thirdButton.isSelected = true
         }
+        
+        firstButton.accessibilityIdentifier = firstButton.isSelected
+            ? viewProperties.accessibilityIds?.firstButtonSelected
+            : viewProperties.accessibilityIds?.firstButtonUnselected
+        
+        secondButton.accessibilityIdentifier = secondButton.isSelected
+            ? viewProperties.accessibilityIds?.secondButtonSelected
+            : viewProperties.accessibilityIds?.secondButtonUnselected
+        
+        thirdButton.accessibilityIdentifier = thirdButton.isSelected
+            ? viewProperties.accessibilityIds?.thirdButtonSelected
+            : viewProperties.accessibilityIds?.thirdButtonUnselected
     }
     
     // MARK: - Private methods
@@ -128,13 +149,6 @@ public final class StocksFilterCell: UITableViewCell {
         selectionStyle = .none
         addSubview()
         makeConstraints()
-    }
-    
-    private func setupAccessibilityIds() {
-        accessibilityIdentifier = viewProperties.accessibilityIds?.id
-        firstButton.accessibilityIdentifier = viewProperties.accessibilityIds?.firstButton
-        secondButton.accessibilityIdentifier = viewProperties.accessibilityIds?.secondButton
-        thirdButton.accessibilityIdentifier = viewProperties.accessibilityIds?.thirdButton
     }
     
     private func addSubview() {
