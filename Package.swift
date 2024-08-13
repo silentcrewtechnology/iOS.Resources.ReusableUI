@@ -17,8 +17,8 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://gitlab.akbars.tech/abo/ios.designsystem", .upToNextMajor(from: "4.0.0")),
-        .package(url: "https://gitlab.akbars.tech/abo/ios.architecture", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://gitlab.akbars.tech/abo/ios.designsystem", .upToNextMajor(from: "18.0.0")),
+        .package(url: "https://gitlab.akbars.tech/abo/ios.architecture", .upToNextMajor(from: "3.0.0")),
         .package(url: "https://github.com/onevcat/Kingfisher", exact: "7.11.0"),
     ],
     targets: [
