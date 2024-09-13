@@ -129,8 +129,12 @@ public final class StockCell: UITableViewCell {
         setupAccessibilityIds(with: properties)
         
         // TODO: - Перейти Currency
-        nameLabel.attributedText = properties.stockModel.name?.textL(color: .contentPrimary)
-        classcodeLabel.attributedText = properties.stockModel.securcode?.textM(color: .contentSecondary)
+        nameLabel.attributedText = properties.stockModel.name?.attributed
+            .fontStyle(.textL)
+            .foregroundColor(.contentPrimary)
+        classcodeLabel.attributedText = properties.stockModel.securcode?.attributed
+            .fontStyle(.textM)
+            .foregroundColor(.contentSecondary)
         
         if let priceDynamics = properties.stockModel.priceDynamics,
            let priceDynamicsInPercent = properties.stockModel.priceDynamicsInPercent {
@@ -147,13 +151,17 @@ public final class StockCell: UITableViewCell {
             
             if let formattedPriceDynamicsInPercent = formatPercent(priceDynamicsInPercent) {
                 priceDynamicsLabel.attributedText =
-                "\(formatPrice(priceDynamics, 0)) ₽ (\(formattedPriceDynamicsInPercent))".textL(color: textColor)
+                "\(formatPrice(priceDynamics, 0)) ₽ (\(formattedPriceDynamicsInPercent))".attributed
+                    .fontStyle(.textL)
+                    .foregroundColor(textColor)
             }
         }
         
         if let price = properties.stockModel.price {
             let formattedPrice = formatPrice(price)
-            priceLabel.attributedText = "\(String(describing: formattedPrice)) ₽".textL_1(color: .contentPrimary)
+            priceLabel.attributedText = "\(String(describing: formattedPrice)) ₽".attributed
+                .fontStyle(.textL_1)
+                .foregroundColor(.contentPrimary)
         }
         
         guard let stringUrl = properties.stockModel.imageUrl,
