@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Colors
 
 public class StocksFilterSelectableButton: UIButton {
     public override var isSelected: Bool {

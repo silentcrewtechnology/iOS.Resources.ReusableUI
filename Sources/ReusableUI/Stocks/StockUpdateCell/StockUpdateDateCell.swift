@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Colors
+import DesignSystem
 
 public final class StockUpdateDateCell: UITableViewCell {
     
@@ -85,7 +86,9 @@ public final class StockUpdateDateCell: UITableViewCell {
     
     public func configure(with properties: ViewProperties) {
         self.viewProperties = properties
-        infoLabel.attributedText = properties.text?.textS(color: .contentPrimary)
+        infoLabel.attributedText = properties.text?.attributed
+            .fontStyle(.textS)
+            .foregroundColor(.contentPrimary)
         infoImageView.image = .ic24InfoCircleFilled.withTintColor(.contentSecondary)
         setupAccessibilityIds()
     }

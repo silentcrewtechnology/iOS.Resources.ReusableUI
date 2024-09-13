@@ -8,6 +8,8 @@
 
 import UIKit
 import ImagesService
+import FontService
+import Colors
 
 public final class PensionEsiaEntryVC: UIViewController, ViewControllerRules {
     
