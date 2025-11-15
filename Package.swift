@@ -25,8 +25,8 @@ let package = Package(
         .target(
             name: "ReusableUI",
             dependencies: [
-                .product(name: "DesignSystem", package: "ios.designsystem"),
-                .product(name: "Architecture", package: "ios.architecture"),
+                .product(name: "DesignSystem", package: "iOS.DesignSystem"),
+                .product(name: "Architecture", package: "iOS.Architecture"),
                 .product(name: "Kingfisher", package: "Kingfisher")
             ]
         ),
